@@ -6,4 +6,8 @@
     <string name="signup">Sign up</string>
     <string name="login">Login</string>
     <string name="username">Username</string>
+    <string name="personal_info" >Personal info</string>
+    <string name="phone">Phone</string>
+    <string name="friends">Friends</string>
+    <string name="places">My places</string>
 </resources>
