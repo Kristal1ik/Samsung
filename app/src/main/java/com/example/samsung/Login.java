@@ -1,5 +1,6 @@
 package com.example.samsung;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,6 +18,7 @@ import com.example.samsung.BD.User;
 import com.example.samsung.databinding.ActivityMainBinding;
 import com.example.samsung.databinding.FragmentLoginBinding;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -25,7 +27,7 @@ import retrofit2.Response;
 
 public class Login extends Fragment {
     FragmentLoginBinding binding;
-    private List<String> users;
+    private ArrayList<String> users;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -46,21 +48,27 @@ public class Login extends Fragment {
         binding.loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RetrofitUserServ.getInstance().getUsers().enqueue(new Callback<List<User>>() {
-                      @Override
-                      public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-                          System.out.println(response.toString());
-                      }
-
-                      @Override
-                      public void onFailure(Call<List<User>> call, Throwable t) {
-
-                      }
-                  });
-
                 String login = binding.usernameLogin.getText().toString();
                 String password = binding.passwordLogin.getText().toString();
-                binding.usernameLogin.setText(""); binding.passwordLogin.setText("");
+                RetrofitUserServ.getInstance().getUsers().enqueue(new Callback<List<User>>() {
+                    @Override
+                    public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                        System.out.println(response.body().toString());
+                        for(User i: response.body()){
+                            users.add(i.getName());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<User>> call, Throwable t) {
+
+                    }
+                });
+                if(users.contains(login)){
+//                    startActivity(new Intent(Login.this, ProfilePage.class));
+                }else{
+//                    обработать
+                }
             }
         });
     }
