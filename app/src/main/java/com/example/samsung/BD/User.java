@@ -1,5 +1,7 @@
 package com.example.samsung.BD;
 
+import androidx.annotation.NonNull;
+
 public class User {
     private long id;
     private String name;
@@ -28,6 +30,12 @@ public class User {
 
     public String getEmail() {
         return email;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return name.toString();
     }
 }
 
