@@ -58,10 +58,8 @@ public class Login extends Fragment {
                             users.add(i.getName());
                         }
                     }
-
                     @Override
                     public void onFailure(Call<List<User>> call, Throwable t) {
-
                     }
                 });
                 if(users.contains(login)){
