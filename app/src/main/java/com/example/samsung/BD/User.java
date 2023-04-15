@@ -35,7 +35,7 @@ public class User {
     @NonNull
     @Override
     public String toString() {
-        return name;
+        return name.toString();
     }
 }
 
