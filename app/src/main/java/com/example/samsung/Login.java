@@ -12,11 +12,20 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.samsung.BD.RetrofitUserServ;
+import com.example.samsung.BD.User;
 import com.example.samsung.databinding.ActivityMainBinding;
 import com.example.samsung.databinding.FragmentLoginBinding;
 
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class Login extends Fragment {
     FragmentLoginBinding binding;
+    private List<String> users;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -37,6 +46,18 @@ public class Login extends Fragment {
         binding.loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                RetrofitUserServ.getInstance().getUsers().enqueue(new Callback<List<User>>() {
+                                                                      @Override
+                                                                      public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                                                                          System.out.println(response.body());
+                                                                      }
+
+                                                                      @Override
+                                                                      public void onFailure(Call<List<User>> call, Throwable t) {
+
+                                                                      }
+                                                                  });
+
                 String login = binding.usernameLogin.getText().toString();
                 String password = binding.passwordLogin.getText().toString();
                 binding.usernameLogin.setText(""); binding.passwordLogin.setText("");
