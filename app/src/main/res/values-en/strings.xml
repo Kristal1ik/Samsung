@@ -10,4 +10,8 @@
     <string name="phone">Phone</string>
     <string name="friends">Friends</string>
     <string name="places">My places</string>
+    <string name="friends2">Friends</string>
+    <string name="add">Add to friends</string>
+
+
 </resources>
