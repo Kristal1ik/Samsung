@@ -49,7 +49,7 @@ public class Login extends Fragment {
                 RetrofitUserServ.getInstance().getUsers().enqueue(new Callback<List<User>>() {
                       @Override
                       public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-                          System.out.println(call.toString());
+                          System.out.println(response.toString());
                       }
 
                       @Override
