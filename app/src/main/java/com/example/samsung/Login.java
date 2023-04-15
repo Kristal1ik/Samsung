@@ -63,7 +63,7 @@ public class Login extends Fragment {
                     }
                 });
                 if(users.contains(login)){
-//                    startActivity(new Intent(Login.this, ProfilePage.class));
+//                     startActivity(new Intent(Login.this, ProfilePage.class));
                 }else{
 //                    обработать
                 }
