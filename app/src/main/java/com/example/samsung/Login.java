@@ -47,16 +47,16 @@ public class Login extends Fragment {
             @Override
             public void onClick(View v) {
                 RetrofitUserServ.getInstance().getUsers().enqueue(new Callback<List<User>>() {
-                                                                      @Override
-                                                                      public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-                                                                          System.out.println(response.body());
-                                                                      }
+                      @Override
+                      public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                          System.out.println(response.toString());
+                      }
 
-                                                                      @Override
-                                                                      public void onFailure(Call<List<User>> call, Throwable t) {
+                      @Override
+                      public void onFailure(Call<List<User>> call, Throwable t) {
 
-                                                                      }
-                                                                  });
+                      }
+                  });
 
                 String login = binding.usernameLogin.getText().toString();
                 String password = binding.passwordLogin.getText().toString();
