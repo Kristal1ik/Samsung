@@ -44,4 +44,5 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
     // Glideimplementation
     "com.github.bumptech.glide:glide:$glide_version"
+    implementation "com.google.android.material:material:1.8.0"
 }
