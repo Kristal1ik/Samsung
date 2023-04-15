@@ -19,6 +19,7 @@ import com.example.samsung.databinding.ActivityMainBinding;
 import com.example.samsung.databinding.FragmentLoginBinding;
 
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,7 +27,7 @@ import retrofit2.Response;
 
 public class Login extends Fragment {
     FragmentLoginBinding binding;
-    private List<String> users;
+    private Map<String, String> users;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -44,26 +45,20 @@ public class Login extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        takeName();
         binding.loginBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-
-//                RetrofitUserServ.getInstance().getUsers().enqueue(new Callback<List<User>>() {
-//                      @Override
-//                      public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-//                          System.out.println(response.toString());
-//                      }
-//                      @Override
-//                      public void onFailure(Call<List<User>> call, Throwable t) {
-//                      }
-//                  });
-
                 String login = binding.usernameLogin.getText().toString();
                 String password = binding.passwordLogin.getText().toString();
                 binding.usernameLogin.setText(""); binding.passwordLogin.setText("");
-                Intent intent = new Intent(v.getContext(), ProfilePage.class);
-                startActivity(intent);
+                if(users.get(login).equals(password)){
+                    Intent intent = new Intent(v.getContext(), ProfilePage.class);
+                    startActivity(intent);
+                }else{
+//                    Обработать
+                }
             }
         });
     }
@@ -73,4 +68,25 @@ public class Login extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+    public void takeName(){
+        RetrofitUserServ.getInstance().getUsers().enqueue(new Callback<List<User>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<User>> call, @NonNull Response<List<User>> response) {
+                assert response.body() != null;
+                for (User user: response.body()){
+                    String name = user.getName();
+                    System.out.println(name);
+                    String pas = user.getPassword();
+                    System.out.println(pas);
+                    users.put(name, pas);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<User>> call,@NonNull Throwable t) {
+                t.printStackTrace();
+            }
+        });
+    }
+
 }

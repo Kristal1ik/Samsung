@@ -48,9 +48,9 @@ public class SignUp extends Fragment {
                 String password = binding.passwordSignup.getText().toString();
                 String confirm = binding.againPasswordSignup.getText().toString();
                 binding.usernameSignup.setText(""); binding.passwordSignup.setText(""); binding.againPasswordSignup.setText("");
-                takeName();
+                names = takeName();
                 System.out.println(names[0]);
-                if(log(username, names)){
+                if(names[0].equals(username)){
 //                    переход сделать
 //                    if(password.equals(confirm)){
 ////                        переход
@@ -66,7 +66,8 @@ public class SignUp extends Fragment {
         });
     }
 
-    public void takeName(){
+    public String[] takeName(){
+        String[] names = new String[10];
         RetrofitUserServ.getInstance().getUsers().enqueue(new Callback<List<User>>() {
             @Override
             public void onResponse(Call<List<User>> call, Response<List<User>> response) {
@@ -88,14 +89,10 @@ public class SignUp extends Fragment {
                 t.printStackTrace();
             }
         });
+        return names;
     }
 
-    public Boolean log(String name, String[] names){
-        names[0] = "efkl";
-        if(names[0].equals(name)){
-            return false;
-        }else{
-            return true;
-        }
+    public void regestrated(String name, String passsword){
+        RetrofitUserServ.getInstance().add(name, passsword, null);
     }
 }
