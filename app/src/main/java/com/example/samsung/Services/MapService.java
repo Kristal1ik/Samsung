@@ -30,6 +30,7 @@ public class MapService implements OnMapReadyCallback, GoogleMap.OnMapClickListe
 
     public MapService(Context context) {
         this.context = context;
+        getPlaces();
     }
 
 
