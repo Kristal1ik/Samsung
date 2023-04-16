@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:text="@string/adress"
+        android:text="@string/address"
         android:textColor="@color/lav1"
         android:textSize="30sp" />
 
