@@ -1,4 +1,4 @@
-package com.example.samsung.domain;
+package com.example.samsung.BD;
 
 import com.google.android.gms.maps.model.LatLng;
 
