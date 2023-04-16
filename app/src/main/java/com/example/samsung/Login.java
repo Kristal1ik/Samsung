@@ -40,6 +40,7 @@ public class Login extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        takeName();
         binding = FragmentLoginBinding.inflate(inflater, container, false);
         return binding.getRoot();
 
@@ -53,7 +54,6 @@ public class Login extends Fragment {
         binding.loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                takeName();
                 String login = binding.usernameLogin.getText().toString();
                 String password = binding.passwordLogin.getText().toString();
                 binding.usernameLogin.setText(""); binding.passwordLogin.setText("");
@@ -91,7 +91,7 @@ public class Login extends Fragment {
 
             @Override
             public void onFailure(@NonNull Call<List<User>> call,@NonNull Throwable t) {
-                t.printStackTrace();
+                Log.d("AAAAAAAA", "AAAAAAAAAAAAAAAAAA");
             }
         });
     }
