@@ -20,6 +20,7 @@ import com.example.samsung.databinding.ActivityMainBinding;
 import com.example.samsung.databinding.FragmentLoginBinding;
 
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +31,8 @@ import retrofit2.Response;
 
 public class Login extends Fragment {
     FragmentLoginBinding binding;
-    Map<String, String> users;
+    Map<String, String> names;
+    ArrayList<User> users;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -49,8 +51,9 @@ public class Login extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        users  = new HashMap<String, String>();
-        users.put("acw", "va;l");
+        names  = new HashMap<String, String>();
+        users = new ArrayList<User>();
+        names.put("acw", "va;l");
         binding.loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,8 +61,8 @@ public class Login extends Fragment {
                 String password = binding.passwordLogin.getText().toString();
                 binding.usernameLogin.setText(""); binding.passwordLogin.setText("");
                 System.out.println(password);
-                System.out.println(users);
-                if(users.get(login) != null){
+                System.out.println(names);
+                if(names.get(login) != null){
                     Intent intent = new Intent(v.getContext(), ProfilePage.class);
                     startActivity(intent);
                 }else{
@@ -80,12 +83,13 @@ public class Login extends Fragment {
             @Override
             public void onResponse(@NonNull Call<List<User>> call, @NonNull Response<List<User>> response) {
                 assert response.body() != null;
+                users.addAll(response.body());
                 for (User user: response.body()){
                     String name = user.getName();
                     String pas = user.getPassword();
                     Log.d("Name", name);
                     Log.d("Password", pas);
-                    users.put(name, pas);
+                    names.put(name, pas);
                 }
             }
 
@@ -95,9 +99,4 @@ public class Login extends Fragment {
             }
         });
     }
-
-    public void button(){
-
-    }
-
 }
