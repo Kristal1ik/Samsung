@@ -12,3 +12,4 @@ public class Friend extends AppCompatActivity {
         setContentView(R.layout.activity_friend);
     }
 }
+
