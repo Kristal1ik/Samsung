@@ -46,6 +46,7 @@ public class SignUp extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         binding.signupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,15 +56,15 @@ public class SignUp extends Fragment {
                 binding.usernameSignup.setText(""); binding.passwordSignup.setText(""); binding.againPasswordSignup.setText("");
                 if(username != null && password != null){
                     if (users.containsKey(username)){
-//                        ТАКОЙ УЖЕ ЕСТЬ ИДИ ЗАХОДИ
+                        binding.textView3.setText(R.string.already);
                     } else if (password.equals(confirm)){
                         regestrated(username, password);
-//                        Переход на логин
+                        binding.textView3.setText(R.string.added);
                     }else {
-//                        РУКОЖОП
+                        binding.textView3.setText(R.string.diff);
                     }
                 }else{
-//               РУКОЖОП
+                    binding.textView3.setText(R.string.diff);
                 }
             }
         });

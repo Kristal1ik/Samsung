@@ -14,6 +14,9 @@
     <string name="add">Add to friends</string>
     <string name="address">Address</string>
     <string name="add_time">Add</string>
-
+    <string name="wrong">Wrong login or password</string>
+    <string name="already">The user is already registered</string>
+    <string name="added">Added</string>
+    <string name="diff">The passwords are different</string>
 
 </resources>

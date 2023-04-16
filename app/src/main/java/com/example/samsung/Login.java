@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.samsung.BD.RetrofitUserServ;
 import com.example.samsung.BD.User;
@@ -33,6 +34,7 @@ public class Login extends Fragment {
     FragmentLoginBinding binding;
     Map<String, String> names;
     ArrayList<User> users;
+    TextView wrong;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -54,6 +56,7 @@ public class Login extends Fragment {
         names  = new HashMap<String, String>();
         users = new ArrayList<User>();
         names.put("acw", "va;l");
+        binding.textView2.setVisibility(View.INVISIBLE);
         binding.loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,10 +70,10 @@ public class Login extends Fragment {
                         Intent intent = new Intent(v.getContext(), ProfilePage.class);
                         startActivity(intent);
                     }else {
-//                        СДЕЛАТЬ ОБРАБОТКУ ЦВЕТОМ
+                            binding.textView2.setVisibility(View.VISIBLE);
                     }
                 }else{
-//                    СДЕЛАТЬ ОБРАБОТКУ ЦВЕТОМ
+                    binding.textView2.setVisibility(View.VISIBLE);
                 }
             }
         });
