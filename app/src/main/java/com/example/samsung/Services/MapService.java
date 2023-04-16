@@ -1,9 +1,18 @@
 package com.example.samsung.Services;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.view.Gravity;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+import com.example.samsung.R;
+
 
 import androidx.annotation.NonNull;
 
@@ -12,6 +21,8 @@ import com.example.samsung.BD.RetrofitPlaceServ;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.badge.BadgeUtils;
 
 import java.util.ArrayList;
@@ -34,9 +45,6 @@ public class MapService implements OnMapReadyCallback, GoogleMap.OnMapClickListe
     }
 
 
-    public void onMapClick(@NonNull LatLng latLng) {
-        System.out.println(places);
-    }
 
     @Override
     public void onMapLongClick(@NonNull LatLng latLng) {
@@ -45,9 +53,38 @@ public class MapService implements OnMapReadyCallback, GoogleMap.OnMapClickListe
 
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
-        googleMap.setOnMapClickListener(this);
+        googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(@NonNull LatLng latLng) {
+                Dialog dialog = new Dialog(context);
+                dialog.setContentView(R.layout.dialog_fragment);
+                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT);
+                dialog.getWindow().setGravity(Gravity.BOTTOM);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+                TextView tv_name = dialog.getWindow().findViewById(R.id.tv_name);
+                TextView tv_address = dialog.getWindow().findViewById(R.id.tv_address);
+                TextView tv_info = dialog.getWindow().findViewById(R.id.tv_description);
+            }
+        });
         googleMap.setOnMapLongClickListener(this);
-
+//        googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+//            @Override
+//            public boolean onMarkerClick(@NonNull Marker marker) {
+//                Dialog dialog = new Dialog(context);
+//                dialog.setContentView(R.layout.dialog_fragment);
+//                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,
+//                        ViewGroup.LayoutParams.WRAP_CONTENT);
+//                dialog.getWindow().setGravity(Gravity.BOTTOM);
+//                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//                dialog.show();
+//                TextView tv_name = dialog.getWindow().findViewById(R.id.tv_name);
+//                TextView tv_address = dialog.getWindow().findViewById(R.id.tv_address);
+//                TextView tv_info = dialog.getWindow().findViewById(R.id.tv_description);
+//                return false;
+//            }
+//        });
     }
 
     public void applayPlace(Place place){
@@ -65,5 +102,9 @@ public class MapService implements OnMapReadyCallback, GoogleMap.OnMapClickListe
 
             }
         });
+    }
+
+    @Override
+    public void onMapClick(@NonNull LatLng latLng) {
     }
 }
