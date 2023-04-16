@@ -23,6 +23,7 @@ public class ProfilePage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        friends = (TextView) findViewById(R.id.friends) ;
         friends.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
