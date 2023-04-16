@@ -69,7 +69,7 @@ public class MapService implements OnMapReadyCallback, GoogleMap.OnMapClickListe
                 applay.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        applayPlace(new Place(0, "Каз", "Как", "книга", latLng.latitude, latLng.longitude,Long.parseLong(time.getText().toString())));
+                        applayPlace(new Place(0, "Каз", "Как", "книга",12.7, 76.1, 12));
                     }
                 });
             }
@@ -94,7 +94,7 @@ public class MapService implements OnMapReadyCallback, GoogleMap.OnMapClickListe
     }
 
     public void applayPlace(Place place){
-        RetrofitPlaceServ.getInstance().add(new Place(0, place.getName(), place.getAdress(), place.getInformarion(), place.getLatLng().latitude, place.getLatLng().longitude, place.getTime()));
+        RetrofitPlaceServ.getInstance().add(new Place(0, place.getName(), place.getAdress(), place.getInformarion(), place.getLantute(), place.getLongetute(), place.getTime()));
     }
 
     public void getPlaces(){
