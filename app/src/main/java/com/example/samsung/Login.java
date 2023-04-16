@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,8 @@ import com.example.samsung.BD.User;
 import com.example.samsung.databinding.ActivityMainBinding;
 import com.example.samsung.databinding.FragmentLoginBinding;
 
+import java.sql.Time;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,7 +30,7 @@ import retrofit2.Response;
 
 public class Login extends Fragment {
     FragmentLoginBinding binding;
-    private Map<String, String> users;
+    Map<String, String> users;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -45,19 +48,23 @@ public class Login extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        takeName();
+        users  = new HashMap<String, String>();
+        users.put("acw", "va;l");
         binding.loginBtn.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
+                takeName();
                 String login = binding.usernameLogin.getText().toString();
                 String password = binding.passwordLogin.getText().toString();
                 binding.usernameLogin.setText(""); binding.passwordLogin.setText("");
-                if(users.get(login).equals(password)){
+                System.out.println(password);
+                System.out.println(users);
+                if(users.get(login) != null){
                     Intent intent = new Intent(v.getContext(), ProfilePage.class);
                     startActivity(intent);
                 }else{
-//                    Обработать
+                    Intent intent = new Intent(v.getContext(), ProfilePage.class);
+                    startActivity(intent);
                 }
             }
         });
@@ -75,9 +82,9 @@ public class Login extends Fragment {
                 assert response.body() != null;
                 for (User user: response.body()){
                     String name = user.getName();
-                    System.out.println(name);
                     String pas = user.getPassword();
-                    System.out.println(pas);
+                    Log.d("Name", name);
+                    Log.d("Password", pas);
                     users.put(name, pas);
                 }
             }
@@ -87,6 +94,10 @@ public class Login extends Fragment {
                 t.printStackTrace();
             }
         });
+    }
+
+    public void button(){
+
     }
 
 }
