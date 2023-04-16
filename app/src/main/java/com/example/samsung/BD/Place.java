@@ -41,6 +41,13 @@ public class Place {
         return latLng;
     }
 
+    public Double getLatetute(){
+        return lantute;
+    }
+
+    public Double getLongetute(){
+        return longitute;
+    }
 
     public long getTime() {
         return time;
