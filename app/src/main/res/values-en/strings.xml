@@ -13,6 +13,7 @@
     <string name="friends2">Friends</string>
     <string name="add">Add to friends</string>
     <string name="address">Address</string>
+    <string name="add_time">Add</string>
 
 
 </resources>
