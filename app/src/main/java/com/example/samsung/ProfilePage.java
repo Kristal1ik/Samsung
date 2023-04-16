@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.example.samsung.databinding.FragmentLoginBinding;
 
 public class ProfilePage extends AppCompatActivity {
-    TextView btn;
+    TextView btn, friends;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +20,13 @@ public class ProfilePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProfilePage.this, Map.class);
+                startActivity(intent);
+            }
+        });
+        friends.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfilePage.this, RecyclerViewClass.class);
                 startActivity(intent);
             }
         });
