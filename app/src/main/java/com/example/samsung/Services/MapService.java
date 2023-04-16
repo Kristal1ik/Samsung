@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,8 +45,6 @@ public class MapService implements OnMapReadyCallback, GoogleMap.OnMapClickListe
         getPlaces();
     }
 
-
-
     @Override
     public void onMapLongClick(@NonNull LatLng latLng) {
         System.out.println(places);
@@ -66,6 +65,13 @@ public class MapService implements OnMapReadyCallback, GoogleMap.OnMapClickListe
                 TextView tv_name = dialog.getWindow().findViewById(R.id.tv_name);
                 TextView tv_address = dialog.getWindow().findViewById(R.id.tv_address);
                 TextView tv_info = dialog.getWindow().findViewById(R.id.tv_description);
+                applay = dialog.findViewById(R.id.tv_description);
+                applay.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        applayPlace(new Place(0, "Каз", "Как", "книга", latLng.latitude, latLng.longitude,Long.parseLong(time.getText().toString())));
+                    }
+                });
             }
         });
         googleMap.setOnMapLongClickListener(this);
@@ -88,7 +94,7 @@ public class MapService implements OnMapReadyCallback, GoogleMap.OnMapClickListe
     }
 
     public void applayPlace(Place place){
-        RetrofitPlaceServ.getInstance().add(new Place(0, place.getName(), place.getAdress(), place.getInformarion(), place.getLatLng().latitude, place.getLatLng().longitude, place.getTime(), place.getUserId()));
+        RetrofitPlaceServ.getInstance().add(new Place(0, place.getName(), place.getAdress(), place.getInformarion(), place.getLatLng().latitude, place.getLatLng().longitude, place.getTime()));
     }
 
     public void getPlaces(){

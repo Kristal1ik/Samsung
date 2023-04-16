@@ -70,7 +70,6 @@ public class Login extends Fragment {
 //                        СДЕЛАТЬ ОБРАБОТКУ ЦВЕТОМ
                     }
                 }else{
-//                    СДЕЛАТЬ ОБРАБОТКУ ЦВЕТОМ
                 }
             }
         });
