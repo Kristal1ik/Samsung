@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,16 +17,19 @@ import com.example.samsung.BD.User;
 import com.example.samsung.databinding.FragmentSignupBinding;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.http.Body;
 
 
 public class SignUp extends Fragment {
     FragmentSignupBinding binding;
-    String[] names = new String[10];
+    Map<String, String> users = new HashMap<String, String>();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +38,7 @@ public class SignUp extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        takeName();
         binding = FragmentSignupBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
@@ -48,51 +53,37 @@ public class SignUp extends Fragment {
                 String password = binding.passwordSignup.getText().toString();
                 String confirm = binding.againPasswordSignup.getText().toString();
                 binding.usernameSignup.setText(""); binding.passwordSignup.setText(""); binding.againPasswordSignup.setText("");
-                names = takeName();
-                System.out.println(names[0]);
-                if(names[0].equals(username)){
-//                    переход сделать
-//                    if(password.equals(confirm)){
-////                        переход
-//                    }else{
-//                        //                    обработать
-//                    }
+                if(users.get(username) != null){
+                    regestrated(username, password);
                 }else{
-//                    обработать
+                    regestrated(username, password);
                 }
-
-
             }
         });
     }
 
-    public String[] takeName(){
-        String[] names = new String[10];
+    public void takeName(){
         RetrofitUserServ.getInstance().getUsers().enqueue(new Callback<List<User>>() {
             @Override
-            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+            public void onResponse(@NonNull Call<List<User>> call, @NonNull Response<List<User>> response) {
                 assert response.body() != null;
                 for (User user: response.body()){
                     String name = user.getName();
-                    System.out.println(name);
-                    if(name != null)
-                        names[0] = name;
-                    else {
-                        names[0] = "ksefv";
-                    }
-                    System.out.println(names[0]);
+                    String pas = user.getPassword();
+                    Log.d("Name", name);
+                    Log.d("Password", pas);
+                    users.put(name, pas);
                 }
             }
 
             @Override
-            public void onFailure(Call<List<User>> call, Throwable t) {
-                t.printStackTrace();
+            public void onFailure(@NonNull Call<List<User>> call,@NonNull Throwable t) {
+                Log.d("AAAAAAAA", "AAAAAAAAAAAAAAAAAA");
             }
         });
-        return names;
     }
 
     public void regestrated(String name, String passsword){
-        RetrofitUserServ.getInstance().add(name, passsword, null);
+        RetrofitUserServ.getInstance().add(new User(0, name, passsword, null));
     }
 }
