@@ -15,3 +15,4 @@ public interface PlaceApi{
     @POST("place")
     Call<Place> add(@Body Place place);
 }
+

@@ -95,15 +95,15 @@ public class MapService implements OnMapReadyCallback, GoogleMap.OnMapClickListe
     }
 
     public void applayPlace(Place place){
-        RetrofitPlaceServ.getInstance().add(new Place(0, place.getName(), place.getAdress(), place.getInformarion(), place.getLatetute(), place.getLongetute(), place.getTime())).enqueue(new Callback<Place>() {
+        RetrofitPlaceServ.getInstance().add(new Place(0, place.getName(), place.getAdress(),
+                place.getInformarion(), place.getLatetute(), place.getLongetute(),
+                place.getTime())).enqueue(new Callback<Place>() {
             @Override
-            public void onResponse(Call<Place> call, Response<Place> response) {
-                Log.d("СОЗДААААААААЛ", "СОЗДААААААААЛ");
+            public void onResponse(@NonNull Call<Place> call, @NonNull Response<Place> response) {
             }
 
             @Override
-            public void onFailure(Call<Place> call, Throwable t) {
-                Log.d("НЕЕЕЕЕЕЕ СОЗДААААААААЛ", "НЕЕЕЕЕЕЕ СОЗДААААААААЛ");
+            public void onFailure(@NonNull Call<Place> call, @NonNull Throwable t) {
             }
         });
     }
