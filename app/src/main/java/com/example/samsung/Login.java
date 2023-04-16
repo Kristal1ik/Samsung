@@ -67,12 +67,7 @@ public class Login extends Fragment {
                 binding.usernameLogin.setText(""); binding.passwordLogin.setText("");
                 System.out.println(password);
 //                System.out.println(names);
-                if (password.equals("1234")){
-                    System.out.println("fghjk");
-                    Intent intent = new Intent(v.getContext(), ProfilePage.class);
-                    startActivity(intent);
-                }
-                else{
+
                 if(names.get(login) != null && login != null){
                     if(names.get(login).equals(password)){
                         Intent intent = new Intent(v.getContext(), ProfilePage.class);
@@ -83,7 +78,7 @@ public class Login extends Fragment {
                 }else{
                     binding.textView2.setVisibility(View.VISIBLE);
                 }
-            }}
+            }
         });
     }
 
