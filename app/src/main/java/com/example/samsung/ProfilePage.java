@@ -19,7 +19,7 @@ public class ProfilePage extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProfilePage.this, Friend.class);
+                Intent intent = new Intent(ProfilePage.this, Map.class);
                 startActivity(intent);
             }
         });

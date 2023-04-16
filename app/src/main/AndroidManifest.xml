@@ -16,21 +16,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".Map"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".Friend"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".User"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -58,10 +44,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Map"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <meta-data
-            android:name="android.app.lib_name"
-            android:value="AIzaSyBJP4imOGavZvpcVEXG-6sR7LjsXONxF8s" />
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAH7ZFjrmG612MXPqhzXod25Oguz7tjPTI" />
     </application>
 
 </manifest>
