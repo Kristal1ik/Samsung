@@ -90,11 +90,11 @@ public class SignUp extends Fragment {
     }
 
     public void regestrated(String name, String passsword){
+        users.put(name, passsword);
         RetrofitUserServ.getInstance().add(new User(0, name, passsword, null)).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 Log.d("СОЗДААААААААЛ", "СОЗДААААААААЛ");
-                takeName();
             }
             @Override
             public void onFailure(Call<User> call, Throwable t) {
