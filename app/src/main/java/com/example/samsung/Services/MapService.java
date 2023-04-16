@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -94,7 +95,17 @@ public class MapService implements OnMapReadyCallback, GoogleMap.OnMapClickListe
     }
 
     public void applayPlace(Place place){
-        RetrofitPlaceServ.getInstance().add(new Place(0, place.getName(), place.getAdress(), place.getInformarion(), place.getLatLng().latitude, place.getLatLng().longitude, place.getTime()));
+        RetrofitPlaceServ.getInstance().add(new Place(0, place.getName(), place.getAdress(), place.getInformarion(), place.getLatLng().latitude, place.getLatLng().longitude, place.getTime())).enqueue(new Callback<Place>() {
+            @Override
+            public void onResponse(Call<Place> call, Response<Place> response) {
+                Log.d("СОЗДААААААААЛ", "СОЗДААААААААЛ");
+            }
+
+            @Override
+            public void onFailure(Call<Place> call, Throwable t) {
+                Log.d("НЕЕЕЕЕЕЕ СОЗДААААААААЛ", "НЕЕЕЕЕЕЕ СОЗДААААААААЛ");
+            }
+        });
     }
 
     public void getPlaces(){
