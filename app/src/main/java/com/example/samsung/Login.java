@@ -62,12 +62,15 @@ public class Login extends Fragment {
                 binding.usernameLogin.setText(""); binding.passwordLogin.setText("");
                 System.out.println(password);
                 System.out.println(names);
-                if(names.get(login) != null){
-                    Intent intent = new Intent(v.getContext(), ProfilePage.class);
-                    startActivity(intent);
+                if(names.get(login) != null && login != null){
+                    if(names.get(login).equals(password)){
+                        Intent intent = new Intent(v.getContext(), ProfilePage.class);
+                        startActivity(intent);
+                    }else {
+//                        СДЕЛАТЬ ОБРАБОТКУ ЦВЕТОМ
+                    }
                 }else{
-                    Intent intent = new Intent(v.getContext(), ProfilePage.class);
-                    startActivity(intent);
+//                    СДЕЛАТЬ ОБРАБОТКУ ЦВЕТОМ
                 }
             }
         });

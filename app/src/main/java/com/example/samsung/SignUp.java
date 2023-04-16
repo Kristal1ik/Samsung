@@ -53,10 +53,17 @@ public class SignUp extends Fragment {
                 String password = binding.passwordSignup.getText().toString();
                 String confirm = binding.againPasswordSignup.getText().toString();
                 binding.usernameSignup.setText(""); binding.passwordSignup.setText(""); binding.againPasswordSignup.setText("");
-                if(users.get(username) != null){
-                    regestrated(username, password);
+                if(username != null && password != null){
+                    if (users.containsKey(username)){
+//                        ТАКОЙ УЖЕ ЕСТЬ ИДИ ЗАХОДИ
+                    } else if (password.equals(confirm)){
+                        regestrated(username, password);
+//                        Переход на логин
+                    }else {
+//                        РУКОЖОП
+                    }
                 }else{
-                    regestrated(username, password);
+//               РУКОЖОП
                 }
             }
         });
@@ -70,8 +77,6 @@ public class SignUp extends Fragment {
                 for (User user: response.body()){
                     String name = user.getName();
                     String pas = user.getPassword();
-                    Log.d("Name", name);
-                    Log.d("Password", pas);
                     users.put(name, pas);
                 }
             }
