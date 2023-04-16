@@ -11,9 +11,8 @@ public class Place {
     private final double longitute;
     private final long time;
     private LatLng latLng;
-    private final long userId;
 
-    public Place(long id, String name, String adress, String informarion, double lantute, double longitute, long time, long userId) {
+    public Place(long id, String name, String adress, String informarion, double lantute, double longitute, long time) {
         this.id = id;
         this.name = name;
         this.adress = adress;
@@ -21,7 +20,6 @@ public class Place {
         this.lantute = lantute;
         this.longitute = longitute;
         this.time = time;
-        this.userId = userId;
     }
 
     public String getName() {
@@ -47,10 +45,7 @@ public class Place {
     public long getTime() {
         return time;
     }
-    
-    public long getUserId() {
-        return userId;
-    }
+
 
     public double getLantute() {
         return lantute;
