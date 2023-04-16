@@ -94,6 +94,7 @@ public class SignUp extends Fragment {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 Log.d("СОЗДААААААААЛ", "СОЗДААААААААЛ");
+                takeName();
             }
             @Override
             public void onFailure(Call<User> call, Throwable t) {

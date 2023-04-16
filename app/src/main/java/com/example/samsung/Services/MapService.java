@@ -70,7 +70,7 @@ public class MapService implements OnMapReadyCallback, GoogleMap.OnMapClickListe
                 applay.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        applayPlace(new Place(0, "Каз", "Как", "книга", 112.1, 12.1,12));/
+                        applayPlace(new Place(0, "Каз", "Как", "книга", 112.1, 12.1,12));
                     }
                 });
             }
